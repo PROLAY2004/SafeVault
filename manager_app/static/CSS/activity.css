@@ -1,0 +1,87 @@
+/* General Styles */
+body {
+    background-color: #121212;
+    color: #ffffff;
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+/* Activity History Container */
+.activity-history-container {
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Page Title */
+.page-title {
+    font-size: 2.5rem;
+    color: #008b8c;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+/* Activity Table */
+.activity-table {
+    background-color: #1f1f1f;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Table Header */
+.table-header {
+    display: flex;
+    background-color: #008b8c;
+    color: #121212;
+    font-weight: bold;
+    padding: 15px;
+}
+
+.header-item {
+    flex: 1;
+    text-align: center;
+}
+
+/* Table Body */
+.table-body {
+    padding: 10px;
+}
+
+/* Table Row */
+.table-row {
+    display: flex;
+    padding: 15px;
+    border-bottom: 1px solid #333;
+    transition: background-color 0.3s ease;
+}
+
+.table-row:last-child {
+    border-bottom: none;
+}
+
+
+/* Table Data */
+.table-data {
+    flex: 1;
+    text-align: center;
+    color: #ffffff;
+    font-size: 1rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .page-title {
+        font-size: 2rem;
+    }
+
+    .table-header, .table-row {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .header-item, .table-data {
+        padding: 10px 0;
+    }
+}

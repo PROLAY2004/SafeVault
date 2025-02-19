@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% load static %}
+{% block static %}
+<link rel="stylesheet" href="{% static 'CSS/about.css' %}">
+<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+{% endblock %}
+
+{% block main %}
+<div class="company">
+    <div class="img">
+        <img src="{% static 'Images/pic2.png' %}" alt="" />
+    </div>
+    <div class="company-info">
+        <span>SafeVault <span class="our">– Secure & Smart Password Management</span></span><br>
+        <p>
+            <b>SafeVault</b> is your trusted companion for securely storing and managing passwords with ease. Our mission is to provide a seamless and encrypted password management solution, ensuring your digital security. With SafeVault, you get strong encryption, easy access, and a user-friendly interface, making password management effortless. While we prioritize security and convenience, users must ensure they remember their master password, as we do not store or recover it for added privacy.
+        </p>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,31 @@
+{% extends 'base_dashboard.html' %}
+
+{% block static %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'CSS/activity.css' %}">
+{% endblock %}
+
+{% block main %}
+    <div class="activity-history-container">
+        <h1 class="page-title">User Activity History</h1>
+        <div class="activity-table">
+            <div class="table-header">
+                <div class="header-item">Operation Name</div>
+                <div class="header-item">Time of Activity</div>
+            </div>
+            <div class="table-body">
+                <!-- Example Activity 1 -->
+                 {% for i in history %}
+                <div class="table-row">
+                    <div class="table-data">{{i.operation}}</div>
+                    <div class="table-data">{{i.time}}</div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+
+
+
