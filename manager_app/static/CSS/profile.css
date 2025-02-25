@@ -1,0 +1,142 @@
+*{
+    box-sizing: border-box;
+}
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+    background-color: #000;
+    color: #e0e0e0;
+}
+
+/* Container */
+.container {
+    width: 95%;
+    margin: 0 auto;
+    padding: 1%;
+}
+
+/* Header */
+h1 {
+    color: #6c63ff;
+    margin-bottom: 20px;
+}
+
+h3 {
+    color: #6c63ff;
+    margin-bottom: 20px;
+    font-size: 22px;
+}
+
+/* Horizontal Rule */
+hr {
+    border: 0;
+    height: 1px;
+    background: #333;
+    margin: 20px 0;
+}
+
+/* Row and Columns */
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.col-md-3, .col-md-9 {
+    flex: 1;
+    min-width: 250px;
+}
+
+/* Avatar Section */
+.text-center {
+    text-align: center;
+}
+
+.avatar {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    border: 3px solid #eee;
+}
+
+h6 {
+    color: #888;
+    margin: 10px 0;
+}
+
+input[type="file"] {
+    margin-top: 10px;
+    color: #eee;
+}
+
+
+/* Form Styling */
+.form-horizontal .form-group {
+    margin-bottom: 15px;
+}
+
+.form-horizontal .control-label {
+    text-align: right;
+    padding-top: 7px;
+    margin-bottom: 0;
+    color: #eee;
+}
+
+.form-control {
+    background-color: #1e1e1e;
+    border: 1px solid #333;
+    color: #e0e0e0;
+    padding: 10px;
+    display: block;
+    border-radius: 4px;
+    width: 100%;
+    margin-top: 2%;
+}
+
+.form-control:focus {
+    border-color: #6c63ff;
+    outline: none;
+}
+
+/* Buttons */
+.btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.btn-primary {
+    background-color: #6c63ff;
+    color: #121212;
+}
+
+.btn-primary:hover {
+    background-color: #493ff8
+}
+
+.btn-default {
+    background-color: #333;
+    color: #e0e0e0;
+    width: 25%;
+    text-align: center;
+}
+
+.btn-default:hover {
+    background-color: #444;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .col-md-3, .col-md-9 {
+        flex: 100%;
+    }
+    .btn-default{
+        width: 30%;
+    }
+    .form-horizontal .control-label {
+        text-align: left;
+    }
+}

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>SafeVault - Sign Up</title>
+    {% load static %}
+    {% if bool == 0 %}
+    <link rel="stylesheet" href="{% static 'CSS/signin.css' %}">
+    {% else %}
+    <link rel="stylesheet" href="{% static 'CSS/otp.css' %}">
+    {% endif %}
+</head>
+<body>
+
+    {% if bool == 0 %}
+    <main class="main-login">
+        <div class="right-login">
+            <form class="card-login" method="post">
+                {% csrf_token %}
+                <h1>Sign Up</h1>
+                <div class="textfield">
+                    <input type="text" name="username" placeholder="Username" required>
+                </div>
+                <div class="textfield">
+                    <input type="email" name="gmail" placeholder="Email" required>
+                </div>
+                <div class="textfield">
+                    <input type="text" name="mobile" placeholder="Mobile" required>
+                </div>
+                <div class="textfield">
+                    <input type="password" name="password" placeholder="Password" required>
+                </div>
+                <p>Already have an account ? <a href="Login">Login</a></p>
+                <button class="btn-login">REGISTER</button>
+                <strong id="msg" style="color: yellow;text-align: center;">{{message}}</strong>
+            </form>
+        </div>
+        <div class="left-login">
+            <img src="{% static 'Images/signup.png' %}" class="left-login-img" alt="astronaut image">
+        </div>
+    </main>
+    {% else %}
+    <main class="main-login">
+    <div class="container">
+        <form method="post">
+            {% csrf_token %}
+            <h1>OTP Validation</h1>
+            <p>Please enter the OTP sent to your Email.<br>(Check the spam folder also)</p>
+            <div class="otp-input-wrapper">
+                <input type="text" maxlength="1" name="a" class="otp-input" oninput="focusNext(this, 0)" />
+                <input type="text" maxlength="1" name="b" class="otp-input" oninput="focusNext(this, 1)" />
+                <input type="text" maxlength="1" name="c" class="otp-input" oninput="focusNext(this, 2)" />
+                <input type="text" maxlength="1" name="d" class="otp-input" oninput="focusNext(this, 3)" />
+                <input type="text" name="data" id="data" style="display: none;" value="{{info}}">
+            </div>
+            <strong id="msg">{{ message|safe }}</strong>
+            <button type="submit">Validate OTP</button>
+        </form>
+        <br>
+        <form class="resend" method="post">
+            {% csrf_token %}
+            <input type="text" name="username" placeholder="Username" style="display: none;" value="{{name}}">
+            <input type="email" name="gmail" placeholder="Email" style="display: none;" value="{{mail}}">
+            <input type="text" name="mobile" placeholder="Mobile_Number" style="display: none;" value="{{num}}">
+            <input type="password" name="password" placeholder="Password" style="display: none;" value="{{password}}">
+            Resend OTP ? <input type="submit" value="CLICK HERE"
+                style="background-color: transparent;color:yellow;border:none;cursor: pointer;">
+        </form>
+    </div>
+    {% endif %}
+
+
+</body>
+<script>
+    function focusNext(element, index) {
+        const inputs = document.querySelectorAll('.otp-input');
+        if (element.value.length === 1 && index < inputs.length - 1) {
+            inputs[index + 1].focus();
+        }
+    }
+    function removeElementAfterTime(elementId, duration) {
+        const element = document.getElementById(elementId);
+        if (element) {
+            setTimeout(() => {
+                element.style.display = "none";
+            }, duration);
+        }
+    }
+    removeElementAfterTime('msg', 2000);
+</script>
+
+</html>

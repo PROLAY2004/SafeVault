@@ -1,0 +1,152 @@
+{% extends 'base_dashboard.html' %}
+
+{% load static %}
+{% block static %}
+<link rel="stylesheet" href="{% static 'CSS/dashboard.css' %}">
+{% endblock %}
+
+
+{% block main %}
+
+<div class="flex-1 p-6 overflow-y-auto">
+    <div class="flex justify-between items-center mb-6">
+        <div class="flex items-center">
+            <button class="md:hidden text-xl" onclick="toggleMenu()">
+                <i class="fas fa-bars">
+                </i>
+            </button>
+            <h1 class="text-3xl font-bold ml-4 md:ml-0">
+                Overview
+            </h1>
+        </div>
+        <div class="flex items-center">
+            <i class="fas fa-bell text-xl mr-4">
+            </i>
+                <a href="/Dashboard/{{user}}">
+                    {% if image %}
+                        <img src="/{{image}}" style="border: 2px solid #eee;" alt="User Image" class="w-10 h-10 rounded-full" height="40" width="40">
+                    {% else %}
+                        <img style="border: 2px solid #eee;" src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png" alt="User Image" class="w-10 h-10 rounded-full" height="40" width="40">
+                    {% endif %}
+                </a>
+        </div>
+    </div>
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+        <!-- Profit Card -->
+        <div class="st p-6 rounded-lg" style="aspect-ratio: 1;">
+            <div class="flex justify-between items-center mb-4">
+                <h2 class="text-xl font-bold">
+                    Welcome , {{user}}
+                </h2>
+            </div>
+            <img alt="Profile Illustration" class="mb-4" id="profile"
+                src="{% static 'Images/dashboard.png' %}"
+                width="100" />
+            <!-- <p class="text-sm">
+                +14% Since last week
+            </p> -->
+        </div>
+        <!-- Sales Report Card -->
+        <div class="st p-6 rounded-lg" style="aspect-ratio: 1;" >
+            <div class="flex justify-between items-center mb-4">
+                <h2 class="text-xl font-bold">
+                    Add Credentials
+                </h2>
+            </div>
+            <div class="h-32">
+                <img alt="Sales Report Chart" id="add"
+                    src="{% static 'Images/add_data.png' %}"/>
+                    <a href="/Dashboard/Add/{{user}}" class="add-btn"><i class="fas fa-plus mr-2"></i>ADD</a>
+            </div>
+        </div>
+        <!-- Analytical AI Card -->
+        <div class="st p-6 rounded-lg" style="aspect-ratio: 1;">
+            <div class="flex justify-between items-center mb-4">
+                <h2 class="text-xl font-bold">
+                    Manage All
+                </h2>
+            </div>
+            <div class="h-32">
+                <img alt="Analytical AI Chart" id="manage"
+                    src="{% static 'Images/manage.png' %}"/>
+                    <a href="/Dashboard/Manage/{{user}}" class="add-btn"><i class="fas fa-database mr-2"></i>MANAGE</a>
+            </div>
+        </div>
+        <!-- Activity Card -->
+        <div class="st p-6 rounded-lg" style="aspect-ratio: 1;">
+            <div class="flex justify-between items-center mb-4">
+                <h2 class="text-xl font-bold">
+                    User Activity
+                </h2>
+            </div>
+            <div class="h-32">
+                <img alt="Activity Chart" id="history"
+                    src="{% static 'Images/history.png' %}" />
+                    <a href="Dashboard/Activity/{{user}}" class="add-btn"><i class="fas fa-tasks mr-2"></i>HISTORY</a>
+            </div>
+        </div>
+        <!-- Invoices Card -->
+        <div class="st lst p-6 rounded-lg col-span-1 md:col-span-2 lg:col-span-2">
+            <div class="flex justify-between items-center mb-4">
+                <h2 class="text-xl font-bold">
+                    View Details
+                </h2>
+                <a id="more" href="/Dashboard/Manage/{{user}}" style="text-decoration: underline;cursor: pointer;text-underline-offset: 15%;" >Show All</a>
+            </div>
+            <div>
+                {% if credentials %}
+                <table class="w-full text-left">
+                    <thead class="hidden md:table-header-group">
+                        <tr>
+                            <th class="pb-2">
+                                Domain
+                            </th>
+                            <th class="pb-2">
+                                Username
+                            </th>
+                            <th class="pb-2">
+                                Password
+                            </th>
+                            <th class="pb-2">
+                                Option
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for i in credentials reversed %}
+                        {% if forloop.counter0 < 4 %}
+                        <tr>
+                            <td class="py-2 flex items-center">
+                                <span>
+                                    {{i.Domain}}
+                                </span>
+                            </td>
+                            <td class="py-2 hidden md:table-cell">
+                                {{i.Domain_Username}}
+                            </td>
+                            <td class="py-2 hidden md:table-cell">
+                                ••••••••
+                            </td>
+                            
+                            <td class="py-2">
+                                <a class="text-blue-500" href="/Dashboard/Manage/{{user}}/{{ i.id_str}}">
+                                    More
+                                </a>
+                            </td>
+                        </tr>
+                        {% endif %}
+                        {% endfor %}
+                        
+                    </tbody>
+                </table>
+                {% else %}
+                <h3>No data found</h3>
+                {% endif %}
+            </div>
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}
