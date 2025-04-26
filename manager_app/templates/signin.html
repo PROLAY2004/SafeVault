@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>SafeVault - Sign In</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'CSS/signin.css' %}">
+    
+</head>
+<body>
+    <main class="main-login">
+        <div class="left-login">
+            <img src="{% static 'Images/login.png' %}" class="left-login-img" alt="astronaut image">
+        </div>
+
+        <div class="right-login">
+            <form class="card-login" method="post">
+                {% csrf_token %}
+                <h1>Sign In</h1>
+                <div class="textfield">
+                    <input type="text" name="uname" placeholder="Username" required>
+                </div>
+                <div class="textfield">
+                    <input type="password" name="pword" placeholder="Password" required>
+                </div>
+                <p>Forgot Password ? <a href="Forgot">Click Here</a></p>
+                <button class="btn-login">Login</button>
+                <p>Don't have an account ? <a href="Register">Register</a></p>
+                <strong id="msg" style="color: rgb(238, 176, 5);text-align: center;">{{message}}</strong>
+            </form>
+        </div>
+    </main>
+</body>
+<script>
+    function focusNext(element, index) {
+        const inputs = document.querySelectorAll('.otp-input');
+        if (element.value.length === 1 && index < inputs.length - 1) {
+            inputs[index + 1].focus();
+        }
+    }
+    function removeElementAfterTime(elementId, duration) {
+        const element = document.getElementById(elementId);
+        if (element) {
+            setTimeout(() => {
+                element.style.display = "none";
+            }, duration);
+        }
+    }
+    removeElementAfterTime('msg', 2000);
+</script>
+</html>

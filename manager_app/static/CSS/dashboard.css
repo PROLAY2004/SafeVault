@@ -1,0 +1,69 @@
+div.flex-1{
+    background-color: black;
+}
+img#profile{
+    width: 85%;
+    display: block;
+    margin: auto;
+}
+img#add{
+    width: 100%;
+    display: block;
+    margin: auto;
+}
+img#manage, img#history{
+    width: 100%;
+    display: block;
+    margin: auto;
+}
+a.add-btn{
+    display: block;
+    margin: auto;
+    padding: 2%;
+    text-align: center;
+    margin-top: 10%;
+    border-radius: 10px;
+    border: 1px solid #eee;
+    width: 90%;
+    text-transform: uppercase;
+    border-radius: 8px;
+    outline: none;
+    font-weight: 800;
+    color: #eee;
+    background: #6c63ff;
+    cursor: pointer;
+}
+div.model{
+    position: absolute;
+    background-color: #212e46;
+    width: 20%;
+    border: 2px solid #eee;
+    text-align: center;
+    padding: 1% 0;
+    top: 5vmax;
+    display: none;
+    right: 3%;
+}
+div.st{
+    background-color: #152238;
+    /* border: 2px solid #2b2b2b; */
+}
+div.lst{
+    position: relative;
+}
+@media(max-width : 768px){
+    div.lst{
+        width: 208%;
+    }
+    div.model{
+        top:8vmax;
+    }
+}
+@media(max-width : 639px){
+    div.lst{
+        width: 100%;
+    }
+    div.model{
+        top:10vmax;
+    }
+}

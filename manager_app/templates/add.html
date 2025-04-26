@@ -1,0 +1,87 @@
+{% extends 'base_dashboard.html' %}
+
+{% load static %}
+{% block static %}
+<link rel="stylesheet" href="{% static 'CSS/add.css' %}">
+{% endblock %}
+
+
+{% block main %}
+
+<div class="flex-1 p-6 overflow-y-auto">
+    <div class="flex justify-between items-center mb-6">
+        <div class="flex items-center">
+            <button class="md:hidden text-xl" onclick="toggleMenu()">
+                <i class="fas fa-bars">
+                </i>
+            </button>
+            <h1 class="text-3xl font-bold ml-4 md:ml-0">
+                Add Data
+            </h1>
+        </div>
+        <div class="flex items-center">
+            <i class="fas fa-bell text-xl mr-4">
+            </i>
+            <a href="/Dashboard/{{user}}">
+                {% if image %}
+                <img src="/{{image}}" style="border: 2px solid #eee;" alt="User Image" class="w-10 h-10 rounded-full"
+                    height="40" width="40">
+                {% else %}
+                <img style="border: 2px solid #eee;"
+                    src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"
+                    alt="User Image" class="w-10 h-10 rounded-full" height="40" width="40">
+                {% endif %}
+            </a>
+        </div>
+    </div>
+        <section class="add-section">
+            <div class="image">
+                <img src="{% static 'Images/add.png' %}" alt="">
+            </div>
+
+            <form class="credentials-form" method="post">
+                {% csrf_token %}
+                <input type="text" name="domain" placeholder="Website Name" required>
+                <input type="text" name="username" placeholder="Username" required>
+                <input type="password" name="password" placeholder="Password" required>
+
+                <!-- Custom Fields Section -->
+                <div id="custom-fields">
+                    <!-- Custom fields will be dynamically added here -->
+                </div>
+
+                <!-- Button to Add Custom Fields -->
+                <button type="button" id="add-custom-field" class="add-custom-field-btn">
+                    <i class="fas fa-plus mr-2"></i>Add Custom Field
+                </button>
+
+                <!-- Submit Button -->
+                <button type="submit" class="submit-btn">Save Credentials</button>
+            </form>
+        </section>
+
+</div>
+
+
+
+<script>
+    // JavaScript for adding custom fields
+    document.getElementById('add-custom-field').addEventListener('click', function() {
+        const customFields = document.getElementById('custom-fields');
+        const newField = document.createElement('div');
+        newField.classList.add('custom-field');
+        newField.innerHTML = `
+            <input type="text" name="custom-field-name" placeholder="Field Name" required>
+            <input type="text" name="custom-field-value" placeholder="Field Value" required>
+            <button type="button" class="remove-custom-field-btn">Remove</button>
+        `;
+        customFields.appendChild(newField);
+
+        // Add event listener to the "Remove" button
+        newField.querySelector('.remove-custom-field-btn').addEventListener('click', function() {
+            customFields.removeChild(newField);
+        });
+    });
+
+</script>
+{% endblock %}
