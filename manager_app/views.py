@@ -414,24 +414,28 @@ def add(request,name):
 
 
 # Show All Credential List
-def all(request,name):
-    if(request.session.get("uname")==name):
-        user = userdata.objects.get(name = name)
-        # data = credentials.objects.filter(username = name)
-        data = list(atlus.find({"Username" : name}))
+def all(request, name):
+    if request.session.get("uname") == name:
+        user = userdata.objects.get(name=name)
+        data = list(atlus.find({"Username": name}))
         search = request.GET.get("search")
-        if(search):
+        
+        if search:
             search = search.capitalize()
+            # Filter the data based on search
+            data = [doc for doc in data if search in doc.get("Title", "")]
+
         for doc in data:
             if "_id" in doc:
                 doc["id_str"] = str(doc["_id"])  
-        context={
-            "image" : user.image,
-            "user" : name,
-            "credentials" : data,
-            "search" : search
+
+        context = {
+            "image": user.image,
+            "user": name,
+            "credentials": data,
+            "search": search
         }
-        return render(request,"manage.html",context)
+        return render(request, "manage.html", context)
     else:
         return redirect("Dashboard")
 
