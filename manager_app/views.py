@@ -376,13 +376,13 @@ def encrypt_data(user_id, plaintext):
 # Add credentials Page
 def add(request,name):
     if(request.session.get("uname")==name):
-        user = userdata.objects.get(name = name)
+        user = userdata.objects.get(name = name).strip()
         
-        website = request.POST.get("domain")
-        username = request.POST.get("username")
+        website = request.POST.get("domain").strip()
+        username = request.POST.get("username").strip()
 
         user_id = user.unique_key
-        credential_pass = request.POST.get("password")
+        credential_pass = request.POST.get("password").strip()
         
         custom_names = request.POST.getlist("custom-field-name")
         custom_values = request.POST.getlist("custom-field-value")
