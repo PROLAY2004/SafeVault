@@ -41,31 +41,29 @@
                 <input type="text" class="search" name="search" placeholder="Search Domain Name">
             </form>
             {% if credentials %}
-            {% for i in credentials reversed %}
-            {% if search %}
-            {% if search in i.domain %}
-            <div class="table-body">
-                <!-- Example Activity 1 -->
-                <div class="grp">
-                    <div class="table-data domain-item">{{i.domain}}</div>
-                    <div class="table-data">{{i.domain_username}}</div>
-                </div>
-                <a href="/Dashboard/Manage/{{user}}/{{i.id}}" class="table-data" style="color: aqua;">More</a>
-            </div>
-            {% endif %}
+                {% for i in credentials reversed %}
+                    {% if search %}
+                        <div class="table-body">
+                            <!-- Example Activity 1 -->
+                            <div class="grp">
+                                <div class="table-data domain-item">{{i.Domain}}</div>
+                                <div class="table-data">{{i.Domain_Username}}</div>
+                            </div>
+                            <a href="/Dashboard/Manage/{{user}}/{{i.id_str}}" class="table-data" style="color: aqua;">More</a>
+                        </div>
+                    {% else %}
+                        <div class="table-body">
+                            <!-- Example Activity 1 -->
+                            <div class="grp">
+                                <div class="table-data domain-item">{{i.Domain}}</div>
+                                <div class="table-data">{{i.Domain_Username}}</div>
+                            </div>
+                            <a href="/Dashboard/Manage/{{user}}/{{i.id_str}}" class="table-data" style="color: aqua;">More</a>
+                        </div>
+                    {% endif %}
+                {% endfor %}
             {% else %}
-            <div class="table-body">
-                <!-- Example Activity 1 -->
-                <div class="grp">
-                    <div class="table-data domain-item">{{i.Domain}}</div>
-                    <div class="table-data">{{i.Domain_Username}}</div>
-                </div>
-                <a href="/Dashboard/Manage/{{user}}/{{i.id_str}}" class="table-data" style="color: aqua;">More</a>
-            </div>
-            {% endif %}
-            {% endfor %}
-            {% else %}
-            <p style="text-align: center;margin: 3% 0;">No Data Found</p>
+                <p style="text-align: center;margin: 3% 0;">No Data Found</p>
             {% endif %}
         </div>
     </div>
