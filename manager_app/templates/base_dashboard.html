@@ -1,0 +1,138 @@
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Dashboard</title>
+    <script src="https://cdn.tailwindcss.com">
+    </script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'CSS/base_dashboard.css' %}">
+    {% block static %}{% endblock %}
+    <script>
+        function toggleMenu() {
+            document.getElementById('sidebar').classList.toggle('hidden');
+        }
+    </script>
+</head>
+
+<body class="bg-gray-700 text-white font-sans">
+    <div class="flex flex-col md:flex-row h-screen overflow-hidden">
+        <!-- Sidebar -->
+        <div class="bg-gray-900 w-full md:w-64 p-4 flex flex-col fixed md:relative z-50 hidden md:block h-full"
+            id="sidebar">
+            <div class="flex justify-between items-center mb-8">
+                <div class="flex items-center">
+                    <img alt="Logo" class="w-10 h-10 mr-2" height="40"
+                        src="https://cdn-icons-png.flaticon.com/512/324/324110.png"
+                        width="40" />
+                    <span class="text-xl font-bold">
+                        SAFEVAULT
+                    </span>
+                </div>
+                <button class="md:hidden text-xl" onclick="toggleMenu()">
+                    <i class="fas fa-times">
+                    </i>
+                </button>
+            </div>
+            <nav class="flex-1 overflow-y-auto">
+                <ul>
+                    <li class="mb-4">
+                        {% if request.path == "/Dashboard" %}
+                        <a class="flex items-center p-2 bg-gray-800 rounded-lg" href="/Dashboard" style="background-color: #2b2b2b;">
+                            <i class="fas fa-tachometer-alt mr-3">
+                            </i>
+                            Dashboard
+                        </a>
+                        {% else %}
+                        <a class="flex items-center p-2 bg-gray-800 rounded-lg" href="/Dashboard">
+                            <i class="fas fa-tachometer-alt mr-3">
+                            </i>
+                            Dashboard
+                        </a>
+                        {% endif %}
+                    </li>
+
+                    <li class="mb-4">
+                        {% if "/Add" in request.path %}
+                        <a class="flex items-center p-2 hover:bg-gray-800 rounded-lg" href="/Dashboard/Add/{{user}}" style="background-color: #2b2b2b;">
+                            <i class="fas fa-plus mr-2"></i>
+                            Add Credentials
+                        </a>
+                        {% else %}
+                        <a class="flex items-center p-2 hover:bg-gray-800 rounded-lg" href="/Dashboard/Add/{{user}}">
+                            <i class="fas fa-plus mr-2"></i>
+                            Add Credentials
+                        </a>
+                        {% endif %}
+                    </li>
+
+                    <li class="mb-4">
+                        {% if "/Manage" in request.path %}
+                        <a class="flex items-center p-2 hover:bg-gray-800 rounded-lg" href="/Dashboard/Manage/{{user}}" style="background-color: #2b2b2b;">
+                            <i class="fas fa-database mr-2"></i>
+                            Manage Credentials
+                        </a>
+                        {% else %}
+                        <a class="flex items-center p-2 hover:bg-gray-800 rounded-lg" href="/Dashboard/Manage/{{user}}">
+                            <i class="fas fa-database mr-2"></i>
+                            Manage Credentials
+                        </a>
+                        {% endif %}
+                    </li>
+
+                    <li class="mb-4">
+                        {% if "/Activity" in request.path %}
+                        <a class="flex items-center p-2 hover:bg-gray-800 rounded-lg" href="/Dashboard/Activity/{{user}}" style="background-color: #2b2b2b;">
+                            <i class="fas fa-tasks mr-2"></i>
+                            Your Activity
+                        </a>
+                        {% else %}
+                        <a class="flex items-center p-2 hover:bg-gray-800 rounded-lg" href="/Dashboard/Activity/{{user}}">
+                            <i class="fas fa-tasks mr-2"></i>
+                            Your Activity
+                        </a>
+                        {% endif %}
+                    </li>
+
+                    <!-- <li class="mb-4">
+                        <a class="flex items-center p-2 hover:bg-gray-800 rounded-lg" href="#">
+                            <i class="fas fa-question-circle mr-3">
+                            </i>
+                            Help & FAQ
+                        </a>
+                    </li> -->
+                    <li class="mb-4">
+                        {% if "/Settings" in request.path %}
+                        <a class="flex items-center p-2 hover:bg-gray-800 rounded-lg" href="/Dashboard/Settings/{{user}}" style="background-color: #2b2b2b;">
+                            <i class="fas fa-cog mr-3">
+                            </i>
+                            Settings
+                        </a>
+                        {% else %}
+                        <a class="flex items-center p-2 hover:bg-gray-800 rounded-lg" href="/Dashboard/Settings/{{user}}">
+                            <i class="fas fa-cog mr-3">
+                            </i>
+                            Settings
+                        </a>
+                        {% endif %}
+                    </li>
+                    <li class="mb-4">
+                        <a class="flex items-center p-2 hover:bg-gray-800 rounded-lg" href="/Logout">
+                            <i class="fas fa-sign-out-alt mr-3">
+                            </i>
+                            Log out
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+        <!-- Main Content -->
+        {% block main %}{% endblock %}
+    </div>
+    <!-- Mobile Sidebar -->
+    
+</body>
+
+</html>

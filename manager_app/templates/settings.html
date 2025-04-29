@@ -1,0 +1,66 @@
+{% extends 'base_dashboard.html' %}
+
+{% load static %}
+{% block static %}
+<link rel="stylesheet" href="{% static 'CSS/settings.css' %}">
+{% endblock %}
+
+
+{% block main %}
+
+<div class="flex-1 p-6 overflow-y-auto">
+    <div class="flex justify-between items-center mb-6">
+        <div class="flex items-center">
+            <button class="md:hidden text-xl" onclick="toggleMenu()">
+                <i class="fas fa-bars">
+                </i>
+            </button>
+            <h1 class="text-3xl font-bold ml-4 md:ml-0">
+                Settings
+            </h1>
+        </div>
+        <div class="flex items-center">
+            <i class="fas fa-bell text-xl mr-4">
+            </i>
+            <a href="/Dashboard/{{user}}">
+                {% if image %}
+                <img src="/{{image}}" style="border: 2px solid #eee;" alt="User Image" class="w-10 h-10 rounded-full"
+                    height="40" width="40">
+                {% else %}
+                <img style="border: 2px solid #eee;"
+                    src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"
+                    alt="User Image" class="w-10 h-10 rounded-full" height="40" width="40">
+                {% endif %}
+            </a>
+        </div>
+    </div>
+    <div class="settings">
+        <div class="block">
+            <form class="uid">
+                <label for="uid">Your Unique Key : </label>
+                <input id="uid" type="text" value="{{uid}}" readonly>
+                <p style="color: yellow;">* Dont share the "Unique key" to anyone.</p>
+            </form>
+
+            <div class="account">
+                <h2 style="font-size: 20px; font-weight: 700;color: red;">Want to Delete Your Account?</h2>
+                <p style="color: rgb(21, 223, 14);">Note : SafeVault will not store any of your data after account
+                    deletion. Your data on SafeVault will permanently lost.</p>
+                    <form method="get">
+                        <input type="text" name="delete" value="True" style="display: none;">
+                        <button class="btn" type="submit" onclick="return confirmdelete()">Delete Account</button>
+                    </form>
+            </div>
+        </div>
+        <div class="image">
+            <img src="{% static 'Images/settings.png' %}" alt="Settings">
+        </div>
+    </div>
+
+</div>
+<script>
+    function confirmdelete(){
+        return confirm("Are You Sure ? Confirm to Delete Your Account.")
+    }
+</script>
+{% endblock %}

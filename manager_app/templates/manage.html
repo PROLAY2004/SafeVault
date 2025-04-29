@@ -1,0 +1,74 @@
+{% extends 'base_dashboard.html' %}
+
+{% load static %}
+{% block static %}
+<link rel="stylesheet" href="{% static 'CSS/manage.css' %}">
+{% endblock %}
+
+
+{% block main %}
+
+<div class="flex-1 p-6 overflow-y-auto">
+    <div class="flex justify-between items-center mb-6">
+        <div class="flex items-center">
+            <button class="md:hidden text-xl" onclick="toggleMenu()">
+                <i class="fas fa-bars">
+                </i>
+            </button>
+            <h1 class="text-3xl font-bold ml-4 md:ml-0">
+                Manage Data
+            </h1>
+        </div>
+        <div class="flex items-center">
+            <i class="fas fa-bell text-xl mr-4">
+            </i>
+            <a href="/Dashboard/{{user}}">
+                {% if image %}
+                <img src="/{{image}}" style="border: 2px solid #eee;" alt="User Image" class="w-10 h-10 rounded-full"
+                    height="40" width="40">
+                {% else %}
+                <img style="border: 2px solid #eee;"
+                    src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"
+                    alt="User Image" class="w-10 h-10 rounded-full" height="40" width="40">
+                {% endif %}
+            </a>
+        </div>
+    </div>
+
+    <div class="activity-history-container">
+        <div class="activity-table">
+            <form class="table-header" method="get">
+                <input type="text" class="search" name="search" placeholder="Search Domain Name">
+            </form>
+            {% if credentials %}
+                {% for i in credentials reversed %}
+                    {% if search %}
+                        <div class="table-body">
+                            <!-- Example Activity 1 -->
+                            <div class="grp">
+                                <div class="table-data domain-item">{{i.Domain}}</div>
+                                <div class="table-data">{{i.Domain_Username}}</div>
+                            </div>
+                            <a href="/Dashboard/Manage/{{user}}/{{i.id_str}}" class="table-data" style="color: aqua;">More</a>
+                        </div>
+                    {% else %}
+                        <div class="table-body">
+                            <!-- Example Activity 1 -->
+                            <div class="grp">
+                                <div class="table-data domain-item">{{i.Domain}}</div>
+                                <div class="table-data">{{i.Domain_Username}}</div>
+                            </div>
+                            <a href="/Dashboard/Manage/{{user}}/{{i.id_str}}" class="table-data" style="color: aqua;">More</a>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            {% else %}
+                <p style="text-align: center;margin: 3% 0;">No Data Found</p>
+            {% endif %}
+        </div>
+    </div>
+
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% load static %}
+{% block static %}
+<style>
+    .main-image {
+        width: 90%;
+        max-width: 600px;
+        display: block;
+        margin: 10% auto;
+        aspect-ratio: 5/4;
+    }
+    h1,p {
+        color: white;
+    }
+    @media(max-width:998px){
+    div.blur-circle2{
+        right: 30%;
+    }
+  }
+</style>
+{% endblock %}
+{% block main %}
+<div class="content">
+    <div class="container">
+        <div class="info">
+            <h1>Your Free and Secure Password Manager</h1>
+            <p>Store, generate, and manage your passwords with complete security. Access your credentials
+                from anywhere, all in one place, completely free.</p>
+                {% if session == 1 %}<a href="Dashboard"><button>Go to Dashboard</button></a>{% else %}<a href="Register"><button>Get Started</button></a>{% endif %}
+        </div>
+        <div class="image">
+            <!-- <img class="main-image" src="https://cdni.iconscout.com/illustration/premium/thumb/businessman-working-using-vr-tech-3840669-3202986.png?f=webp"> -->
+            <img class="main-image" src="{% static 'Images/pic.png' %}">
+        </div>
+    </div>
+</div>
+{% endblock %}

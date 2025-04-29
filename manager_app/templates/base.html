@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
+    <title>SafeVault | Password Management</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'CSS/base.CSS' %}">
+    {% block static %}{% endblock %}
+</head>
+
+<body>
+    <div class="main-container">
+        <div class="blur-circle1">
+
+        </div>
+        <div class="blur-circle2">
+
+        </div>
+        <!-- Start Landing Page -->
+        <div class="landing-page">
+            <header>
+                <div class="container">
+                    <a href="/" class="logo"><b>SafeVault</b></a>
+                    <ul class="links">
+                        {% if request.path == '/Home' %}<a style="color:#766efd" href="Home">Home</a>{% else %}<a href="Home">Home</a>{% endif %}
+                        {% if request.path == '/About' %}<a style="color:#766efd" href="About">About</a>{% else %}<a href="About">About</a>{% endif %}
+                        {% if request.path == '/Contact' %}<a style="color:#766efd" href="Contact">Contact</a>{% else %}<a href="Contact">Contact</a>{% endif %}
+                        {% if session == 1 %}<a href="Logout">Logout</a>{% else %}<a href="Login">Login</a>{% endif %}
+                    </ul>
+                </div>
+            </header>
+            {% block main %}{% endblock %}
+        </div>
+        <!-- End Landing Page -->
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>SafeVault - Verification</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'CSS/signin.css' %}">
+</head>
+<body>
+    <main class="main-login">
+
+        <div class="right-login">
+            <form class="card-login" method="post">
+                {% csrf_token %}
+                <h1>Update Password</h1>
+                <div class="textfield">
+                    <input type="password" name="password" placeholder="Enter New Password" required>
+                </div>
+                <button class="btn-login">ENTER</button>
+                <strong id="msg" style="color: rgb(238, 176, 5);text-align: center;">{{message}}</strong>
+            </form>
+        </div>
+        <div class="left-login">
+            <img src="{% static 'Images/update.png' %}" class="left-login-img" alt="astronaut image">
+        </div>
+
+    </main>
+</body>
+<script>
+        function removeElementAfterTime(elementId, duration) {
+            const element = document.getElementById(elementId);
+            if (element) {
+                setTimeout(() => {
+                    element.style.display = "none";
+                }, duration);
+            }
+        }
+        removeElementAfterTime('msg', 2000);
+</script>
+</html>
