@@ -376,9 +376,9 @@ def encrypt_data(user_id, plaintext):
 # Add credentials Page
 def add(request,name):
     if(request.session.get("uname")==name):
-        user = userdata.objects.get(name = name).strip()
+        user = userdata.objects.get(name = name)
         
-        website = request.POST.get("domain").strip()
+        website = request.POST.get("domain").strip(
         username = request.POST.get("username").strip()
 
         user_id = user.unique_key
